@@ -10,7 +10,7 @@ import (
 )
 
 func ServeData(w http.ResponseWriter, r *http.Request) {
-	incomingRequest := &Request{}
+	incomingRequest := &defn.Request{}
 	logger := &defn.LoggerDefn{}
 	err := json.NewDecoder(r.Body).Decode(incomingRequest)
 	if err != nil {
@@ -23,7 +23,7 @@ func ServeData(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	file, err := os.Open("example.json")
+	file, err := os.Open("C:/Projects/src/httpvshttp2/server/routes/example.json")
 	if err != nil {
 		log.Print(logger.SetLogggerDefn(err, "Error while opening file", "ServeData"))
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -38,12 +38,11 @@ func ServeData(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ResponseObj := &Response{}
+	ResponseObj := &defn.Response{}
+
 	for key, val := range exampleMapObj {
 		if key == incomingRequest.Key {
 			ResponseObj.Value = val
-		} else {
-			ResponseObj.Value = ""
 		}
 	}
 
