@@ -33,7 +33,7 @@ func main() {
 
 	json.NewEncoder(buf).Encode(&reqobj)
 
-	response, err := client.Post("http://localhost:8080/serve", "", buf)
+	response, err := client.Post("https://localhost:8080/serve", "", buf)
 	if err != nil {
 		fmt.Print("\n error while sending request.. Error ", err)
 	}
