@@ -44,7 +44,7 @@ func main() {
 	}
 	fmt.Print("\n response received is ", responseobj.Value)
 
-	fmt.Print(response.Proto)
+	fmt.Print("\n Protocol - ", response.Proto)
 }
 
 type Request struct {
